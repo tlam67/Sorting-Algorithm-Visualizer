@@ -49,11 +49,51 @@ class heapSort(Algorithm):
             createHeap(self.array, i, 0)
 
 
+class radixSort(Algorithm):
+    def __init__(self):
+        super().__init__("HeapSort")
+
+    def algorithm(self):
+        def countingSort(array, digit):
+            size = len(array)
+            output = [0] * size
+            count = [0] * 10
+
+            for i in range(0, size):
+                index = array[i]//digit
+                count[index % 10] += 1
+
+            for i in range(1, 10):
+                count[i] += count[i - 1]
+
+            i = size - 1
+            while i >= 0:
+                index = array[i] // digit
+                output[count[index % 10] - 1] = array[i]
+                count[index % 10] -= 1
+                i -= 1
+
+            for i in range(0, size):
+                array[i] = output[i]
+        
+        maxElement = max(self.array)
+
+        digit = 1
+        while maxElement // digit > 0:
+            countingSort(self.array, digit)
+            digit *= 10
 
 
 heap = heapSort()
-results = heap.run()
-array = results[0]
-time = results[1]
-print("time taken: {} secs".format(time))
-print("time taken: {} ms".format(time*1000))
+heapResults = heap.run()
+heapArray = heapResults[0]
+heapTime = heapResults[1]
+print("time taken: {} secs".format(heapTime))
+print("time taken: {} ms".format(heapTime*1000))
+
+radix = radixSort()
+radixResults = radix.run()
+radixArray = radixResults[0]
+radixTime = radixResults[1]
+print("time taken: {} secs".format(radixTime))
+print("time taken: {} ms".format(radixTime*1000))
