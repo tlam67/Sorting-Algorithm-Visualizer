@@ -1,49 +1,32 @@
-import random
-
-class heapSort(Algorithm):
-    def __init__(self):
-        super(),__init__("SelectionSort")
-
-    def algorithm(self):
-        heapSize = len(self.array)
-        
-
-        for i in range(heapSize//2 - 1, -1, -1):
-            createHeap(array, heapSize, i)
-
-        for i in range(heapSize-1, 0, -1):
-            array[i], array[0] = array[0], array[i]
-            createHeap(array, i, 0)
-
-    def createHeap(array, heapSize, index):
-        largest = index
-        left = 2 * index + 1
-        right = 2 * index + 2
-
-        if left < heapSize and array[largest] < array[left]:
-            largest = left
-
-        if right < heapSize and array[largest] < array[right]:
-            largest = right
-        
-        if largest != index:
-            array[index], array[largest] = array[largest], array[index]
-
-            createHeap(array, heapSize, largest)
+from animation import Plot
 
 
-    def heapSort(array):
-        heapSize = len(array)
+def createHeap(data, heapSize, index):
+    largest = index
+    left = 2 * index + 1
+    right = 2 * index + 2
 
-        for i in range(heapSize//2 - 1, -1, -1):
-            createHeap(array, heapSize, i)
+    if left < heapSize and data[largest] < data[left]:
+        largest = left
 
-        for i in range(heapSize-1, 0, -1):
-            array[i], array[0] = array[0], array[i]
-            createHeap(array, i, 0)
+    if right < heapSize and data[largest] < data[right]:
+        largest = right
+    
+    if largest != index:
+        data[index], data[largest] = data[largest], data[index]
+        createHeap(data, heapSize, largest)
+        Plot(index, data)
 
-            
 
-test = random.sample(range(512), 512)
-heapSort(test)
-print(test)
+def heapSort(data):
+    heapSize = len(data)
+
+    for i in range(heapSize//2 - 1, -1, -1):
+        createHeap(data, heapSize, i)
+
+    for i in range(heapSize-1, 0, -1):
+        data[i], data[0] = data[0], data[i]
+        createHeap(data, i, 0)
+
+
+

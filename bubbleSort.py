@@ -1,12 +1,9 @@
-import random
+from animation import Plot
 
-def bubbleSort(array):
-    for i in range(len(array)):
-        for j in range(len(array)-i-1):
-            if array[j] > array[j+1]:
-                array[j], array[j+1] = array[j+1], array[j]
-    return array
-
-
-test = random.sample(range(512), 512)
-print(bubbleSort(test))
+def bubbleSort(data):
+    for i in range(len(data)):
+        for j in range(len(data)-i-1):
+            if data[j] > data[j+1]:
+                data[j], data[j+1] = data[j+1], data[j]
+                Plot(j+1, data)
+    return data

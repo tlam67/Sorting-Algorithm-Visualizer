@@ -1,4 +1,4 @@
-import random
+from animation import Plot
 
 def countingSort(array, digit):
     size = len(array)
@@ -17,10 +17,13 @@ def countingSort(array, digit):
         index = array[i] // digit
         output[count[index % 10] - 1] = array[i]
         count[index % 10] -= 1
+        Plot(i, array)
         i -= 1
 
     for i in range(0, size):
         array[i] = output[i]
+        Plot(i, array)
+    #Plot(len(array)-1, array)
 
 def radixSort(array):
     maxElement = max(array)
@@ -29,7 +32,5 @@ def radixSort(array):
     while maxElement // digit > 0:
         countingSort(array, digit)
         digit *= 10
+    
 
-test = random.sample(range(512), 512)
-radixSort(test)
-print(test)

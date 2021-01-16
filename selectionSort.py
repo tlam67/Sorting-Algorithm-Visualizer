@@ -1,13 +1,12 @@
-import random
+from animation import Plot
 
-def selectionSort(array):
-    for i in range(len(array)):
+def selectionSort(data):
+    for i in range(len(data)):
         index = i
-        for j in range(i+1, len(array)):
-            if array[index] > array[j]:
+        for j in range(i+1, len(data)):
+            if data[index] > data[j]:
                 index = j
-        array[i], array[index] = array[index], array[i]
-    return array
+            Plot(j, data)
 
-test = random.sample(range(512), 512)
-print(selectionSort(test))
+        data[i], data[index] = data[index], data[i]
+    return data
